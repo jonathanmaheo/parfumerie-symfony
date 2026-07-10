@@ -1,0 +1,217 @@
+{% extends 'base.html.twig' %}
+
+{% block h1 %}Parfums de niche{% endblock %}
+
+{% block body %}
+
+<form method="get" class="mb-5">
+    <div class="row align-items-end g-3">
+
+        <div class="col-md-3">
+            <label class="form-label">Marque</label>
+            <select name="brand" class="form-select">
+                <option value="">Toutes les marques</option>
+                {% for brand in brands %}
+                    <option value="{{ brand.id }}" {% if selectedBrand == brand.id %}selected{% endif %}>
+                        {{ brand.title }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Famille olfactive</label>
+            <select name="family" class="form-select">
+                <option value="">Toutes les familles</option>
+                {% for family in families %}
+                    <option value="{{ family.id }}" {% if selectedFamily == family.id %}selected{% endif %}>
+                        {{ family.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label class="form-label">Prix max</label>
+            <input
+                type="number"
+                name="maxPrice"
+                class="form-control"
+                placeholder="Ex : 150"
+                value="{{ selectedMaxPrice }}"
+            >
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-dark w-100">
+                Filtrer
+            </button>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{{ path('app_catalog') }}" class="btn btn-outline-dark w-100">
+                Réinitialiser
+            </a>
+        </div>
+
+    </div>
+</form>
+
+<div class="row g-5">
+
+    {% for parfum in parfums %}
+
+        {# ===== DEFAULT VARIANT (70ml sinon fallback) ===== #}
+        {% set defaultVariant = null %}
+
+        {% for variant in parfum.variants %}
+            {% if variant.size == '70ml' %}
+                {% set defaultVariant = variant %}
+            {% endif %}
+        {% endfor %}
+
+        {% if not defaultVariant %}
+            {% set defaultVariant = parfum.variants|length > 0 ? parfum.variants|first : null %}
+        {% endif %}
+
+        <div class="col-md-3">
+
+            <div class="lux-card">
+
+                {# ===== IMAGE ===== #}
+                <div class="lux-image">
+                    <img
+                        id="img-{{ parfum.id }}"
+                        src="{{ parfum.picture }}"
+                        alt="{{ parfum.name }}"
+                        style="transition: all 0.2s ease;"
+                    >
+                </div>
+
+                <div class="lux-content">
+
+                    {# ===== BRAND ===== #}
+                    <p class="lux-brand">
+                        {{ parfum.brand ? parfum.brand.title : 'Maison indépendante' }}
+                    </p>
+
+                    {# ===== NAME ===== #}
+                    <h2 class="lux-title">
+                        {{ parfum.name }}
+                    </h2>
+
+                    {# ===== FAMILIES ===== #}
+                    <div class="lux-families">
+                        {% for family in parfum.families %}
+                            <span>{{ family.name }}</span>
+                        {% endfor %}
+                    </div>
+
+                    {# ===== VARIANTS ===== #}
+                    <div class="lux-variants">
+
+                        {% if parfum.variants|length > 1 %}
+
+                            {% for variant in parfum.variants %}
+
+                                <button
+                                    class="variant-btn"
+                                    onclick="changeVariant(
+                                        {{ parfum.id }},
+                                        '{% if variant.image %}{{ asset(variant.image) }}{% else %}{{ parfum.picture }}{% endif %}',
+                                        '{{ variant.price }}',
+                                        this
+                                    )"
+                                >
+                                    {% if variant %}
+                                        {{ variant.size }}
+                                    {% else %}
+                                        Aucune contenance
+                                    {% endif %}
+                                </button>
+
+                            {% endfor %}
+
+                        {% else %}
+
+                            {% set variant = parfum.variants|length > 0 ? parfum.variants|first : null %}
+
+                            <span class="variant-single">
+                                {% if variant %}
+                                    {{ variant.size }}
+                                {% else %}
+                                    Aucune contenance
+                                {% endif %}
+                            </span>
+
+                {% endif %}
+
+                </div>
+
+                    {# ===== PRICE ===== #}
+                    <p class="lux-price" id="price-{{ parfum.id }}">
+                        {% if defaultVariant %}
+                            {{ defaultVariant.price }} €
+                        {% else %}
+                            {% set defaultVariant = parfum.variants|length > 0 ? parfum.variants|first : null %}
+
+                        {% if defaultVariant %}
+                            {{ defaultVariant.price }} €
+                        {% else %}
+                            Prix non renseigné
+                        {% endif %}
+                        {% endif %}
+                    </p>
+
+                    {# ===== LINK ===== #}
+                    <a href="{{ path('app_parfum', {id: parfum.id}) }}"
+                       class="lux-link">
+                        Découvrir
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{# ===== JS ===== #}
+<script>
+function changeVariant(id, image, price, btn) {
+
+    const img = document.getElementById('img-' + id);
+    const priceEl = document.getElementById('price-' + id);
+
+    if (!img || !priceEl) return;
+
+    // fade image
+    img.style.opacity = 0;
+    img.style.transform = "scale(0.98)";
+
+    setTimeout(() => {
+        img.src = image;
+        img.style.opacity = 1;
+        img.style.transform = "scale(1)";
+    }, 150);
+
+    // change price
+    priceEl.innerText = price + " €";
+
+    // reset all buttons in the same card
+    const card = btn.closest('.lux-card');
+
+    if (card) {
+        card.querySelectorAll('.variant-btn')
+            .forEach(b => b.classList.remove('active'));
+
+        btn.classList.add('active');
+    }
+}
+</script>
+
+
+{% endblock %}

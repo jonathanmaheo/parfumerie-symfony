@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle marque{% endblock %}
+{% block h1 %}Nouvelle marque{% endblock %}
+
+{% block body %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path ('app_admin')}}">Back office</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_admin_brand_index') }}">Gestion des marques</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ajouter une marque</li>
+        </ol>
+    </nav>
+    
+
+    {{ include('admin_brand/_form.html.twig') }}
+
+    
+{% endblock %}

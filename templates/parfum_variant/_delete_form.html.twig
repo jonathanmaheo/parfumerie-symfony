@@ -1,0 +1,15 @@
+<form method="post"
+      action="{{ path('app_parfum_variant_delete', {'id': parfum_variant.id}) }}"
+      style="display:inline;"
+      onsubmit="return confirm('Voulez-vous vraiment supprimer cette variante ?');">
+
+    <input type="hidden"
+           name="_token"
+           value="{{ csrf_token('delete' ~ parfum_variant.id) }}">
+
+    <button type="submit"
+            class="btn btn-sm btn-outline-danger"
+            title="Supprimer">
+        <i class="bi bi-trash"></i>
+    </button>
+</form>

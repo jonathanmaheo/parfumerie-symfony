@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ParfumVariant{% endblock %}
+
+{% block body %}
+
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path ('app_admin')}}">Back office</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_parfum_variant_index') }}">Gestion des variantes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Modifier</li>
+        </ol>
+    </nav>
+
+    <h1>Edit ParfumVariant</h1>
+
+    {{ include('parfum_variant/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_parfum_variant_index') }}">back to list</a>
+
+    {{ include('parfum_variant/_delete_form.html.twig') }}
+{% endblock %}

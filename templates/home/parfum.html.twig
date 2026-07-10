@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parfum.name }}{% endblock %}
+{% block h1 %}{% endblock %}
+
+{% block body %}
+
+{% set defaultVariant = null %}
+
+{% for variant in parfum.variants %}
+    {% if variant.size == '70ml' %}
+        {% set defaultVariant = variant %}
+    {% endif %}
+{% endfor %}
+
+{% if not defaultVariant %}
+    {% set defaultVariant = parfum.variants|length > 0 ? parfum.variants|first : null %}
+{% endif %}
+
+<section class="product-page">
+
+    <div class="product-image-box">
+        <img
+            id="main-image"
+            src="{{ parfum.picture }}"
+            alt="{{ parfum.name }}"
+        >
+    </div>
+
+    <div class="product-info">
+
+        <p class="product-brand">
+            {{ parfum.brand ? parfum.brand.title : 'Maison indépendante' }}
+        </p>
+
+        <h1>{{ parfum.name }}</h1>
+
+        <p class="product-type">{{ parfum.type }}</p>
+
+        <div class="product-families">
+
+    {% for family in parfum.families %}
+        <span class="family-badge">
+            {{ family.name }}
+        </span>
+    {% else %}
+        <span class="text-muted">
+            Famille non renseignée
+        </span>
+    {% endfor %}
+
+</div>
+
+        <div class="product-variants">
+            <p>Contenance</p>
+
+            {% for variant in parfum.variants %}
+                <button
+                    class="product-variant-btn"
+                    onclick="changeVariant('{{ asset(variant.image) }}', '{{ variant.price }}', this)"
+                >
+                    {{ variant.size }}
+                </button>
+            {% endfor %}
+        </div>
+
+        <h2 id="price" class="product-price">
+            {% if defaultVariant %}
+                {{ defaultVariant.price }} €
+            {% else %}
+                Prix non renseigné
+            {% endif %}
+        </h2>
+
+        <div class="product-notes">
+            <h3>Notes olfactives</h3>
+
+            <p><strong>Tête :</strong> {{ parfum.noteTete ?: 'Non renseigné' }}</p>
+            <p><strong>Cœur :</strong> {{ parfum.noteCoeur ?: 'Non renseigné' }}</p>
+            <p><strong>Fond :</strong> {{ parfum.noteFond ?: 'Non renseigné' }}</p>
+        </div>
+
+        <div class="intensity-block">
+
+            <p>
+                <strong>Sillage :</strong>
+                {{ parfum.sillage ?? 0 }} / 100
+            </p>
+
+            <div class="intensity-bar">
+                <div
+                    class="intensity-fill
+                        {% if parfum.sillage < 40 %}
+                            intensity-low
+                        {% elseif parfum.sillage < 80 %}
+                            intensity-medium
+                        {% else %}
+                            intensity-high
+                        {% endif %}
+                    "
+                    style="width: {{ parfum.sillage ?? 0 }}%;">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="intensity-block">
+
+            <p>
+                <strong>Tenue :</strong>
+                {{ parfum.tenue ?? 0 }} / 100
+            </p>
+
+            <div class="intensity-bar">
+                <div
+                    class="intensity-fill
+                        {% if parfum.tenue < 40 %}
+                            intensity-low
+                        {% elseif parfum.tenue < 80 %}
+                            intensity-medium
+                        {% else %}
+                            intensity-high
+                        {% endif %}
+                    "
+                    style="width: {{ parfum.tenue ?? 0 }}%;">
+                </div>
+            </div>
+
+        </div>
+        <div style="margin-top: 30px">
+        <button class="add-cart-btn">
+            Ajouter au panier
+        </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+function changeVariant(image, price, btn) {
+    const img = document.getElementById('main-image');
+    const priceEl = document.getElementById('price');
+
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+        img.src = image;
+        img.style.opacity = 1;
+    }, 150);
+
+    priceEl.innerText = price + " €";
+
+    document.querySelectorAll('.product-variant-btn')
+        .forEach(button => button.classList.remove('active'));
+
+    btn.classList.add('active');
+}
+</script>
+
+{% endblock %}

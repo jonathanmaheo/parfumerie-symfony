@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Parfum{% endblock %}
+{% block h1 %}Modifier parfum{% endblock %}
+
+{% block body %}
+
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path ('app_admin')}}">Back office</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_admin_parfum_index') }}">Gestion des parfums</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Modifier</li>
+        </ol>
+    </nav>
+
+    {{ include('admin_parfum/_form.html.twig', {'button_label': 'Valider'}) }}
+
+    <a href="{{ path('app_admin_parfum_index') }}">Retour à la gestion des parfums</a>
+
+    {{ include('admin_parfum/_delete_form.html.twig') }}
+{% endblock %}

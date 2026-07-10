@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des variantes{% endblock %}
+{% block h1 %}Gestion des variantes{% endblock %}
+
+{% block body %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('app_admin') }}">Back office</a></li>
+        <li class="breadcrumb-item active">Gestion des variantes</li>
+    </ol>
+</nav>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Variantes</h2>
+
+    <a class="btn btn-dark" href="{{ path('app_parfum_variant_new') }}">
+        + Ajouter une variante
+    </a>
+</div>
+
+<table class="table table-striped table-bordered table-hover text-center align-middle">
+    <thead class="table-primary">
+        <tr>
+            <th>Image</th>
+            <th>Parfum</th>
+            <th>Contenance</th>
+            <th>Prix</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for parfum_variant in parfum_variants %}
+        <tr>
+            <td>
+                <img
+                    class="imgRatioCarre w150"
+                    src="{% if parfum_variant.image %}{{ asset(parfum_variant.image) }}{% else %}{{ parfum_variant.parfum.picture }}{% endif %}"
+                    alt="{{ parfum_variant.parfum.name }}"
+                >
+            </td>
+
+            <td>{{ parfum_variant.parfum.name }}</td>
+
+            <td>
+                <span class="badge bg-secondary">
+                    {{ parfum_variant.size }}
+                </span>
+            </td>
+
+            <td>{{ parfum_variant.price }} €</td>
+
+            <td>{{ parfum_variant.stock }}</td>
+
+            <td class="text-nowrap">
+                <a class="btn btn-sm btn-outline-warning"
+                   href="{{ path('app_parfum_variant_edit', {'id': parfum_variant.id}) }}"
+                   title="Modifier">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                {{ include('parfum_variant/_delete_form.html.twig', { parfum_variant: parfum_variant }) }}
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">Aucune variante trouvée.</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

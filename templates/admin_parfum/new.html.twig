@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau parfum Parfum{% endblock %}
+
+{% block h1 %}Ajouter un parfum{% endblock %}
+{% block body %}
+    
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path ('app_admin')}}">Back office</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_admin_parfum_index') }}">Gestion des parfums</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ajouter un parfum</li>
+        </ol>
+    </nav>
+
+    {{ include('admin_parfum/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_parfum_index') }}">Retour à la liste des parfums</a>
+{% endblock %}

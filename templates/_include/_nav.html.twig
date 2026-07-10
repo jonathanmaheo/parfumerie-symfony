@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg custom-navbar">
+
+    <div class="container-fluid px-5">
+
+        <!-- LOGO -->
+        <a class="navbar-brand logo-elixir" href="{{ path('app_home') }}">
+            <div class="logo-title">MAISON ELIXIR</div>
+            <div class="logo-subtitle">Parfums de niche</div>
+        </a>
+
+        <button class="navbar-toggler bg-white" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+
+            <!-- MENU -->
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_catalog') }}">Parfums</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_marques') }}">Marques</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+
+            </ul>
+
+            <!-- ICONES -->
+            <ul class="navbar-nav ms-auto align-items-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        🛒
+                    </a>
+                </li>
+                {% if app.user %}            
+
+            <li class="nav-item dropdown p-0">
+              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ app.user.firstName}} {{ app.user.lastName}}
+              
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{{ path('app_profile') }}">Mon espace client</a></li>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                  
+                
+                  <li><a class="dropdown-item" href="{{ path('app_admin') }}">Back office</a></li>
+                {% endif %}
+
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{ path('app_logout')}}">Déconnexion</a></li>
+              </ul>
+            </li>
+
+            {% else %}
+
+            <li class="nav-item">
+            <a class="nav-link text-white" href="{{ path('app_register') }}">Inscription</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{{ path('app_login') }}">Connexion</a>
+          </li>
+          
+            {% endif %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+

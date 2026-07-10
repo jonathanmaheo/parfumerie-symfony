@@ -1,0 +1,103 @@
+/* ==========================
+   FICHE PARFUM
+========================== */
+
+.product-page{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    margin: 70px 0;
+}
+
+.product-image-box{
+    background: #f8f5f1;
+    border-radius: 25px;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image-box img{
+    width: 100%;
+    max-width: 450px;
+    transition: .3s;
+}
+
+.product-brand{
+    color: #b08b4f;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.product-info h1{
+    font-family: "Playfair Display", serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.product-type{
+    color: #777;
+    margin-bottom: 35px;
+}
+
+.product-price{
+    font-size: 38px;
+    font-weight: 600;
+    margin: 35px 0;
+}
+
+.product-variants{
+    margin-top: 25px;
+}
+
+.product-variants p{
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.product-variant-btn{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:30px;
+    padding:10px 22px;
+    margin-right:12px;
+    cursor:pointer;
+    transition:.3s;
+    font-weight:500;
+}
+
+.product-variant-btn:hover{
+    border-color:#caa86a;
+    background:#faf6ef;
+}
+
+.product-variant-btn.active{
+    background:#caa86a;
+    color:white;
+    border-color:#caa86a;
+}
+
+/* ==========================
+   FAMILLES OLFACTIVES
+========================== */
+
+.product-families{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:30px 0;
+}
+
+.family-badge{
+    padding:8px 18px;
+    border:1px solid #d7b57a;
+    border-radius:30px;
+    background:#faf6ef;
+    color:#8b6a2e;
+    font-size:14px;
+    font-weight:500;
+}
