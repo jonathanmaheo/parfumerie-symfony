@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Confirmation de commande
+{% endblock %}
+
+{% block body %}
+
+	<h1>Merci pour votre commande !</h1>
+
+	<p>
+		Votre commande n°
+		<strong>{{ commande.id }}</strong>
+		a bien été enregistrée.
+	</p>
+
+	<h3>Récapitulatif</h3>
+
+	<table class="table table-bordered">
+
+		<thead>
+			<tr>
+				<th>Parfum</th>
+				<th>Contenance</th>
+				<th>Prix</th>
+				<th>Quantité</th>
+				<th>Sous-total</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			{% set total = 0 %}
+
+			{% for ligne in commande.commandeProduits %}
+
+				{% set sousTotal = ligne.parfumVariant.price * ligne.quantity %}
+				{% set total = total + sousTotal %}
+
+				<tr>
+
+					<td>{{ ligne.parfumVariant.parfum.name }}</td>
+
+					<td>{{ ligne.parfumVariant.size }}</td>
+
+					<td>{{ ligne.parfumVariant.price }} €</td>
+
+					<td>{{ ligne.quantity }}</td>
+
+					<td>{{ sousTotal }} €</td>
+
+				</tr>
+
+			{% endfor %}
+
+		</tbody>
+
+	</table>
+
+	<h3>
+		Total :
+		{{ total }}
+		€
+	</h3>
+
+	<div class="text-end mt-4">
+		<a href="{{ path('app_catalog') }}" class="btn btn-dark btn-lg">
+			Continuer mes achats
+		</a>
+	</div>
+
+{% endblock %}

@@ -71,11 +71,16 @@ final class AdminParfumController extends AbstractController
     #[Route('/{id}', name: 'app_admin_parfum_delete', methods: ['POST'])]
     public function delete(Request $request, Parfum $parfum, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$parfum->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $parfum->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($parfum);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_parfum_variant_new', ['parfum' => $parfum -> getId()], Response::HTTP_SEE_OTHER);
+        $this->addFlash(
+            'success',
+            'Le parfum a bien été supprimé.'
+        );
+
+        return $this->redirectToRoute('app_admin_parfum_index', [], Response::HTTP_SEE_OTHER);
     }
 }

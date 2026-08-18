@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conditions générales d'utilisation{% endblock %}
+{% block h1 %}Conditions générales d'utilisation{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <h2>1. Objet</h2>
+        <p>Les présentes CGU définissent les conditions d'accès et d'utilisation du site de la Maison Elixir.</p>
+
+        <h2>2. Accès au site</h2>
+        <p>L'accès au site est gratuit. L'utilisateur s'engage à fournir des informations exactes lors de la création de son compte.</p>
+
+        <h2>3. Compte utilisateur</h2>
+        <p>L'utilisateur est responsable de la confidentialité de ses identifiants. Toute activité réalisée depuis son compte lui est imputable.</p>
+
+        <h2>4. Propriété intellectuelle</h2>
+        <p>Les textes, images, logos et marques présents sur le site sont la propriété de la Maison Elixir et ne peuvent être repris sans autorisation.</p>
+
+        <h2>5. Données personnelles</h2>
+        <p>Les données collectées sont traitées conformément à notre <a href="{{ path('app_page_politique_confidentialite') }}">politique de confidentialité</a>.</p>
+
+        <h2>6. Modification des CGU</h2>
+        <p>La Maison Elixir peut modifier les présentes CGU à tout moment. Elles s'appliquent immédiatement après leur publication.</p>
+    </div>
+{% endblock %}

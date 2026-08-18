@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Paiement
+{% endblock %}
+
+{% block body %}
+
+	<h1>Paiement de votre commande</h1>
+
+	{% if panier is empty %}
+
+		<p>Votre panier est vide.</p>
+		<a href="{{ path('app_catalog') }}" class="btn btn-dark">
+			Continuer mes achats
+		</a>
+
+	{% else %}
+
+		<h3>Récapitulatif</h3>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Parfum</th>
+					<th>Contenance</th>
+					<th>Prix</th>
+					<th>Quantité</th>
+					<th>Sous-total</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for item in panier %}
+					<tr>
+						<td>{{ item.variant.parfum.name }}</td>
+						<td>{{ item.variant.size }}</td>
+						<td>{{ item.variant.price }} €</td>
+						<td>{{ item.quantite }}</td>
+						<td>{{ item.sousTotal }} €</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<h3>
+			Total :
+			{{ total }}
+			€
+		</h3>
+
+		<form method="post" action="{{ path('app_commande_valider') }}">
+
+			<div class="mb-3">
+				<label for="titulaire" class="form-label">Titulaire de la carte</label>
+				<input type="text" id="titulaire" name="titulaire" class="form-control" required>
+			</div>
+
+			<div class="mb-3">
+				<label for="numero" class="form-label">Numéro de carte</label>
+				<input type="text" id="numero" name="numero" class="form-control" placeholder="0000 0000 0000 0000" required>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label for="expiration" class="form-label">Date d'expiration</label>
+					<input type="text" id="expiration" name="expiration" class="form-control" placeholder="MM/AA" required>
+				</div>
+
+				<div class="col-md-6 mb-3">
+					<label for="cvc" class="form-label">CVC</label>
+					<input type="text" id="cvc" name="cvc" class="form-control" placeholder="123" required>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-success btn-lg mt-2">
+				Payer {{ total }} €
+			</button>
+
+		</form>
+
+		<p class="text-muted mt-3">
+			Paiement simulé : aucun débit réel n'a lieu.
+		</p>
+
+	{% endif %}
+
+{% endblock %}

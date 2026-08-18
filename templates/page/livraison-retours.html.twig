@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livraison et retours{% endblock %}
+{% block h1 %}Livraison et retours{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <h2>Livraison</h2>
+        <p>Nous livrons en France métropolitaine et en Europe. Les commandes sont expédiées sous 24-48h ouvrées.</p>
+        <ul>
+            <li>France métropolitaine : 2 à 4 jours ouvrés — <strong>offerte dès 79 € d'achat</strong></li>
+            <li>Europe : 4 à 7 jours ouvrés — 9,90 €</li>
+        </ul>
+
+        <h2>Retours</h2>
+        <p>Conformément à la loi, vous disposez de <strong>14 jours</strong> après réception pour retourner un produit et obtenir un remboursement.</p>
+
+        <h2>Comment retourner ?</h2>
+        <ol>
+            <li>Contactez-nous via la <a href="{{ path('app_page_contact') }}">page contact</a>.</li>
+            <li>Nous vous transmettons l'étiquette de retour.</li>
+            <li>Déposez le colis dans un point de dépôt.</li>
+        </ol>
+        <p>Le remboursement est effectué sous 14 jours après réception du produit retourné.</p>
+    </div>
+{% endblock %}

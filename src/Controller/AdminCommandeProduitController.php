@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin/commande/produit')]
+#[Route('/admin/commande-produit')]
 final class AdminCommandeProduitController extends AbstractController
 {
     #[Route(name: 'app_admin_commande_produit_index', methods: ['GET'])]
@@ -75,6 +75,11 @@ final class AdminCommandeProduitController extends AbstractController
             $entityManager->remove($commandeProduit);
             $entityManager->flush();
         }
+
+        $this->addFlash(
+            'success',
+            'La ligne de commande a bien été supprimée.'
+        );
 
         return $this->redirectToRoute('app_admin_commande_produit_index', [], Response::HTTP_SEE_OTHER);
     }

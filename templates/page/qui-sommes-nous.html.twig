@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre histoire{% endblock %}
+{% block h1 %}Notre histoire{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <p class="lead">Née de la passion des grands parfums de niche, la Maison Elixir sélectionne des créations rares et artisanales pour hommes et femmes.</p>
+
+        <h2>Un savoir-faire d'exception</h2>
+        <p>Chaque flacon raconte une histoire : des matières premières nobles, des parfumeurs de talent et des compositions d'une grande singularité.</p>
+
+        <h2>Nos engagements</h2>
+        <ul>
+            <li>Des parfums authentiques, non dilués et authentifiés.</li>
+            <li>Un service client attentionné, avant et après l'achat.</li>
+            <li>Des emballages respectueux de l'environnement.</li>
+        </ul>
+
+        <h2>Découvrez nos parfums</h2>
+        <p>Parcourez notre <a href="{{ path('app_catalog') }}">catalogue</a> ou nos <a href="{{ path('app_marques') }}">marques</a>.</p>
+    </div>
+{% endblock %}

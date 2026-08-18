@@ -17,8 +17,8 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $date = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?Client $client = null;
@@ -36,14 +36,15 @@ class Commande
         return $this->id;
     }
 
-    public function getDate(): ?string
+    public function getDate(): ?\DateTimeImmutable
     {
         return $this->date;
     }
 
-    public function setDate(string $date): static
+    public function setDate(\DateTimeImmutable $date): static
     {
         $this->date = $date;
+
         return $this;
     }
 

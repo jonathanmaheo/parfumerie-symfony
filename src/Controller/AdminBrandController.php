@@ -76,6 +76,11 @@ final class AdminBrandController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash(
+            'success',
+            'La marque a bien été supprimée.'
+        );
+
         return $this->redirectToRoute('app_admin_brand_index', [], Response::HTTP_SEE_OTHER);
     }
 }

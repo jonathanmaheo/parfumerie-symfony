@@ -91,6 +91,11 @@ final class ParfumVariantController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash(
+            'success',
+            'La variante a bien été supprimée.'
+        );
+
         return $this->redirectToRoute('app_parfum_variant_index', [], Response::HTTP_SEE_OTHER);
     }
 }

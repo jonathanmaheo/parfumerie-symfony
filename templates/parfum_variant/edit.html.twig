@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ParfumVariant{% endblock %}
+{% block title %}Modifier la variante n°{{ parfum_variant.id }}{% endblock %}
 
 {% block body %}
 
@@ -12,11 +12,11 @@
         </ol>
     </nav>
 
-    <h1>Edit ParfumVariant</h1>
+    <h1>Modifier la variante n°{{ parfum_variant.id }}</h1>
 
-    {{ include('parfum_variant/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('parfum_variant/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_parfum_variant_index') }}">back to list</a>
+    <a href="{{ path('app_parfum_variant_index') }}">Retour à la liste</a>
 
     {{ include('parfum_variant/_delete_form.html.twig') }}
 {% endblock %}

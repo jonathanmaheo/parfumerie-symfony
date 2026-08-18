@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de confidentialité{% endblock %}
+{% block h1 %}Politique de confidentialité{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <h2>1. Responsable du traitement</h2>
+        <p>La Maison Elixir est responsable du traitement des données personnelles collectées sur ce site.</p>
+
+        <h2>2. Données collectées</h2>
+        <p>Nous collectons les données nécessaires à la gestion de vos commandes (nom, prénom, e-mail, adresse de livraison) ainsi que celles issues de votre navigation (cookies).</p>
+
+        <h2>3. Finalités</h2>
+        <p>Vos données sont utilisées pour le traitement des commandes, la relation client et, avec votre accord, l'envoi de notre newsletter.</p>
+
+        <h2>4. Durée de conservation</h2>
+        <p>Les données de commande sont conservées pendant la durée légale applicable (10 ans pour les factures).</p>
+
+        <h2>5. Vos droits (RGPD)</h2>
+        <p>Vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression de vos données. Pour l'exercer, contactez-nous via la <a href="{{ path('app_page_contact') }}">page contact</a>.</p>
+
+        <h2>6. Cookies</h2>
+        <p>Des cookies sont utilisés pour le fonctionnement du site (session, préférences). Vous pouvez les désactiver dans votre navigateur.</p>
+    </div>
+{% endblock %}

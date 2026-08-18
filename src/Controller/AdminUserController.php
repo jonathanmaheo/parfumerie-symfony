@@ -76,6 +76,11 @@ final class AdminUserController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash(
+            'success',
+            'L\'utilisateur a bien été supprimé.'
+        );
+
         return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -9,14 +9,12 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\Validator\Constraints\Url;
 
 class ParfumType extends AbstractType
@@ -42,23 +40,6 @@ class ParfumType extends AbstractType
                 'class' => Brand::class,
                 'choice_label' => 'title',
             ])
-
-            // ->add('price', MoneyType::class, [
-            //     'label' => 'Prix<span class="text-danger">*</span>',
-            //     'label_html' => true,
-            //     'attr' => [
-            //         'placeholder' => 'Saisir un prix',
-            //     ],
-            //     'required' => false,
-            //     'constraints' => [
-            //         new NotBlank([
-            //             'message' => 'Veuillez saisir le prix'
-            //         ]),
-            //         new Positive([
-            //             'message' => 'Veuillez saisir un prix strictement supérieur à 0'
-            //         ])
-            //     ]
-            // ])
 
             ->add('families', EntityType::class, [
                 'label' => 'Familles olfactives',

@@ -1,162 +1,205 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parfum.name }}{% endblock %}
+{% block title %}
+    {{ parfum.name }}
+{% endblock %}
+
 {% block h1 %}{% endblock %}
 
 {% block body %}
 
-{% set defaultVariant = null %}
+    {% set defaultVariant = null %}
 
-{% for variant in parfum.variants %}
-    {% if variant.size == '70ml' %}
-        {% set defaultVariant = variant %}
-    {% endif %}
-{% endfor %}
-
-{% if not defaultVariant %}
-    {% set defaultVariant = parfum.variants|length > 0 ? parfum.variants|first : null %}
-{% endif %}
-
-<section class="product-page">
-
-    <div class="product-image-box">
-        <img
-            id="main-image"
-            src="{{ parfum.picture }}"
-            alt="{{ parfum.name }}"
-        >
-    </div>
-
-    <div class="product-info">
-
-        <p class="product-brand">
-            {{ parfum.brand ? parfum.brand.title : 'Maison indépendante' }}
-        </p>
-
-        <h1>{{ parfum.name }}</h1>
-
-        <p class="product-type">{{ parfum.type }}</p>
-
-        <div class="product-families">
-
-    {% for family in parfum.families %}
-        <span class="family-badge">
-            {{ family.name }}
-        </span>
-    {% else %}
-        <span class="text-muted">
-            Famille non renseignée
-        </span>
+    {% for variant in parfum.variants %}
+        {% if variant.size == '70ml' %}
+            {% set defaultVariant = variant %}
+        {% endif %}
     {% endfor %}
 
-</div>
+    {% if not defaultVariant %}
+        {% set defaultVariant = parfum.variants|length > 0 ? parfum.variants|first : null %}
+    {% endif %}
 
-        <div class="product-variants">
-            <p>Contenance</p>
+    <section class="product-page">
 
-            {% for variant in parfum.variants %}
-                <button
-                    class="product-variant-btn"
-                    onclick="changeVariant('{{ asset(variant.image) }}', '{{ variant.price }}', this)"
-                >
-                    {{ variant.size }}
-                </button>
-            {% endfor %}
+        <div class="product-image-box">
+            <img
+                id="main-image"
+                src="{{ parfum.picture }}"
+                alt="{{ parfum.name }}"
+            >
         </div>
 
-        <h2 id="price" class="product-price">
-            {% if defaultVariant %}
-                {{ defaultVariant.price }} €
-            {% else %}
-                Prix non renseigné
+        <div class="product-info">
+
+            <p class="product-brand">
+                {{ parfum.brand ? parfum.brand.title : 'Maison indépendante' }}
+            </p>
+
+            <h1>{{ parfum.name }}</h1>
+
+            <p class="product-type">
+                {{ parfum.type }}
+            </p>
+
+            <div class="product-families">
+
+                {% for family in parfum.families %}
+                    <span class="family-badge">
+                        {{ family.name }}
+                    </span>
+                {% else %}
+                    <span class="text-muted">
+                        Famille non renseignée
+                    </span>
+                {% endfor %}
+
+            </div>
+
+            <div class="product-variants">
+
+                <p>Contenance</p>
+
+                {% for variant in parfum.variants %}
+
+                    <button
+                        class="product-variant-btn"
+                        onclick="changeVariant('{{ asset(variant.image) }}', '{{ variant.price }}', '{{ variant.id }}', this)"
+                    >
+                        {{ variant.size }}
+                    </button>
+
+                {% endfor %}
+
+            </div>
+
+            <h2
+                id="price"
+                class="product-price"
+            >
+                {% if defaultVariant %}
+                    {{ defaultVariant.price }} €
+                {% else %}
+                    Prix non renseigné
+                {% endif %}
+            </h2>
+
+            <div class="product-notes">
+
+                <h3>Notes olfactives</h3>
+
+                <p>
+                    <strong>Tête :</strong>
+                    {{ parfum.noteTete ?: 'Non renseigné' }}
+                </p>
+
+                <p>
+                    <strong>Cœur :</strong>
+                    {{ parfum.noteCoeur ?: 'Non renseigné' }}
+                </p>
+
+                <p>
+                    <strong>Fond :</strong>
+                    {{ parfum.noteFond ?: 'Non renseigné' }}
+                </p>
+
+            </div>
+
+            {% set sillageClass = 'intensity-high' %}
+
+            {% if parfum.sillage < 40 %}
+                {% set sillageClass = 'intensity-low' %}
+            {% elseif parfum.sillage < 80 %}
+                {% set sillageClass = 'intensity-medium' %}
             {% endif %}
-        </h2>
 
-        <div class="product-notes">
-            <h3>Notes olfactives</h3>
+            <div class="intensity-block">
 
-            <p><strong>Tête :</strong> {{ parfum.noteTete ?: 'Non renseigné' }}</p>
-            <p><strong>Cœur :</strong> {{ parfum.noteCoeur ?: 'Non renseigné' }}</p>
-            <p><strong>Fond :</strong> {{ parfum.noteFond ?: 'Non renseigné' }}</p>
-        </div>
+                <p>
+                    <strong>Sillage :</strong>
+                    {{ parfum.sillage ?? 0 }} / 100
+                </p>
 
-        <div class="intensity-block">
-
-            <p>
-                <strong>Sillage :</strong>
-                {{ parfum.sillage ?? 0 }} / 100
-            </p>
-
-            <div class="intensity-bar">
-                <div
-                    class="intensity-fill
-                        {% if parfum.sillage < 40 %}
-                            intensity-low
-                        {% elseif parfum.sillage < 80 %}
-                            intensity-medium
-                        {% else %}
-                            intensity-high
-                        {% endif %}
-                    "
-                    style="width: {{ parfum.sillage ?? 0 }}%;">
+                <div class="intensity-bar">
+                    <div
+                        class="intensity-fill {{ sillageClass }}"
+                        style="width: {{ parfum.sillage ?? 0 }}%;"
+                    ></div>
                 </div>
+
+            </div>
+
+            {% set tenueClass = 'intensity-high' %}
+
+            {% if parfum.tenue < 40 %}
+                {% set tenueClass = 'intensity-low' %}
+            {% elseif parfum.tenue < 80 %}
+                {% set tenueClass = 'intensity-medium' %}
+            {% endif %}
+
+            <div class="intensity-block">
+
+                <p>
+                    <strong>Tenue :</strong>
+                    {{ parfum.tenue ?? 0 }} / 100
+                </p>
+
+                <div class="intensity-bar">
+                    <div
+                        class="intensity-fill {{ tenueClass }}"
+                        style="width: {{ parfum.tenue ?? 0 }}%;"
+                    ></div>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 30px">
+
+                {% if defaultVariant %}
+                    <a
+                        id="add-cart-link"
+                        href="{{ path('app_panier_ajouter', {'id': defaultVariant.id}) }}"
+                        class="add-cart-btn"
+                    >
+                        Ajouter au panier
+                    </a>
+                {% endif %}
+
             </div>
 
         </div>
 
-        <div class="intensity-block">
+    </section>
 
-            <p>
-                <strong>Tenue :</strong>
-                {{ parfum.tenue ?? 0 }} / 100
-            </p>
+    <script>
 
-            <div class="intensity-bar">
-                <div
-                    class="intensity-fill
-                        {% if parfum.tenue < 40 %}
-                            intensity-low
-                        {% elseif parfum.tenue < 80 %}
-                            intensity-medium
-                        {% else %}
-                            intensity-high
-                        {% endif %}
-                    "
-                    style="width: {{ parfum.tenue ?? 0 }}%;">
-                </div>
-            </div>
+        function changeVariant(image, price, variantId, btn) {
 
-        </div>
-        <div style="margin-top: 30px">
-        <button class="add-cart-btn">
-            Ajouter au panier
-        </button>
+            const img = document.getElementById('main-image');
+            const priceEl = document.getElementById('price');
+            const addCartLink = document.getElementById('add-cart-link');
 
-        </div>
+            img.style.opacity = 0;
 
-    </div>
+            setTimeout(() => {
+                img.src = image;
+                img.style.opacity = 1;
+            }, 150);
 
-</section>
+            priceEl.innerText = price + " €";
 
-<script>
-function changeVariant(image, price, btn) {
-    const img = document.getElementById('main-image');
-    const priceEl = document.getElementById('price');
+            if (addCartLink) {
+                addCartLink.href = "{{ path('app_panier_ajouter', {'id': 'VARIANT_ID'}) }}"
+                    .replace('VARIANT_ID', variantId);
+            }
 
-    img.style.opacity = 0;
+            document.querySelectorAll('.product-variant-btn')
+                .forEach(button => button.classList.remove('active'));
 
-    setTimeout(() => {
-        img.src = image;
-        img.style.opacity = 1;
-    }, 150);
+            btn.classList.add('active');
 
-    priceEl.innerText = price + " €";
+        }
 
-    document.querySelectorAll('.product-variant-btn')
-        .forEach(button => button.classList.remove('active'));
-
-    btn.classList.add('active');
-}
-</script>
+    </script>
 
 {% endblock %}

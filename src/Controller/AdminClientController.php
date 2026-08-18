@@ -76,6 +76,11 @@ final class AdminClientController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash(
+            'success',
+            'Le client a bien été supprimé.'
+        );
+
         return $this->redirectToRoute('app_admin_client_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -15,7 +15,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="mb-0">Variantes</h2>
 
-    <a class="btn btn-dark" href="{{ path('app_parfum_variant_new') }}">
+    <a class="btn btn-success" href="{{ path('app_parfum_variant_new') }}">
         + Ajouter une variante
     </a>
 </div>
@@ -23,6 +23,7 @@
 <table class="table table-striped table-bordered table-hover text-center align-middle">
     <thead class="table-primary">
         <tr>
+            <th>ID</th> 
             <th>Image</th>
             <th>Parfum</th>
             <th>Contenance</th>
@@ -35,6 +36,8 @@
     <tbody>
     {% for parfum_variant in parfum_variants %}
         <tr>
+            <td>{{ parfum_variant.id }}</td>
+            
             <td>
                 <img
                     class="imgRatioCarre w150"
@@ -56,6 +59,12 @@
             <td>{{ parfum_variant.stock }}</td>
 
             <td class="text-nowrap">
+                <a class="btn btn-sm btn-outline-primary"
+                   href="{{ path('app_parfum_variant_show', {'id': parfum_variant.id}) }}"
+                   title="Voir">
+                    <i class="bi bi-eye"></i>
+                </a>
+
                 <a class="btn btn-sm btn-outline-warning"
                    href="{{ path('app_parfum_variant_edit', {'id': parfum_variant.id}) }}"
                    title="Modifier">

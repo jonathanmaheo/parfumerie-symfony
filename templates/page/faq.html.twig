@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FAQ{% endblock %}
+{% block h1 %}Questions fréquentes{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <h2>Quels sont les délais de livraison ?</h2>
+        <p>En France métropolitaine, comptez 2 à 4 jours ouvrés. Voir la page <a href="{{ path('app_page_livraison_retours') }}">Livraison et retours</a>.</p>
+
+        <h2>Comment tester un parfum ?</h2>
+        <p>Nos sélections incluent des échantillons et des contenances 30ml, parfaits pour découvrir une fragrance avant l'achat d'un grand flacon.</p>
+
+        <h2>Puis-je retourner un produit ?</h2>
+        <p>Oui, vous disposez de 14 jours après la réception pour exercer votre droit de rétractation, sans justification.</p>
+
+        <h2>Comment mes commandes sont-elles suivies ?</h2>
+        <p>Un e-mail de confirmation est envoyé à chaque étape de l'expédition de votre commande.</p>
+
+        <h2>Contact</h2>
+        <p>Vous ne trouvez pas votre réponse ? <a href="{{ path('app_page_contact') }}">Contactez-nous</a>.</p>
+    </div>
+{% endblock %}

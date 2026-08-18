@@ -1,0 +1,56 @@
+.page-content {
+    background: #fff;
+    border: 1px solid #e5dfd2;
+    border-radius: 8px;
+    padding: 2.5rem 3rem;
+    max-width: 850px;
+    margin: 0 auto 3rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .06);
+}
+
+.page-content h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: #1c1c1c;
+    margin: 2rem 0 .8rem;
+}
+
+.page-content h2:first-child {
+    margin-top: 0;
+}
+
+.page-content p {
+    font-family: "Poppins", sans-serif;
+    font-size: .95rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+}
+
+.page-content a {
+    color: #caa86a;
+    text-decoration: none;
+    border-bottom: 1px solid #caa86a;
+    transition: color .2s;
+}
+
+.page-content a:hover {
+    color: #a7854a;
+}
+
+.page-content ul,
+.page-content ol {
+    padding-left: 1.3rem;
+    color: #4a4a4a;
+    line-height: 1.9;
+}
+
+.page-content li {
+    margin-bottom: .4rem;
+}
+
+.page-content .lead {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #6b5d3e;
+}

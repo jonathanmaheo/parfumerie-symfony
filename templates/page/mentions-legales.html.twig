@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions légales{% endblock %}
+{% block h1 %}Mentions légales{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <h2>Éditeur</h2>
+        <p>Maison Elixir<br>SAS au capital de 10 000 €<br>Siège social : 1 rue du Parfum, 75001 Paris<br>SIRET : 000 000 000 00000</p>
+
+        <h2>Directeur de la publication</h2>
+        <p>M. Jonathan Maheo, Président.</p>
+
+        <h2>Hébergeur</h2>
+        <p>Symfony Cloud — 3 rue de l'Innovation, 75002 Paris.</p>
+
+        <h2>Propriété intellectuelle</h2>
+        <p>L'ensemble des éléments du site (textes, photographies, logos) est protégé par la législation sur la propriété intellectuelle.</p>
+
+        <h2>Contact</h2>
+        <p>Une question ? Consultez notre <a href="{{ path('app_page_contact') }}">page contact</a>.</p>
+    </div>
+{% endblock %}

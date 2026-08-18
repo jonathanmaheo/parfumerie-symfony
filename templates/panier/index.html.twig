@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Mon panier
+{% endblock %}
+
+{% block body %}
+
+	<h1>Mon panier</h1>
+
+	{% if panier is empty %}
+
+		<p>Votre panier est vide.</p>
+
+	{% else %}
+
+		<table class="table table-bordered">
+
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Parfum</th>
+					<th>Contenance</th>
+					<th>Prix</th>
+					<th>Quantité</th>
+					<th>Sous-total</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				{% for item in panier %}
+
+					<tr>
+
+						<td>
+							<img src="{% if item.variant.image %}{{ asset(item.variant.image) }}{% else %}{{ item.variant.parfum.picture }}{% endif %}" alt="{{ item.variant.parfum.name }}" class="img-fluid" style="max-width: 80px; height: auto;">
+						</td>
+
+						<td>
+							{{ item.variant.parfum.name }}
+						</td>
+
+						<td>
+							{{ item.variant.size }}
+						</td>
+
+						<td>
+							{{ item.variant.price }}
+							€
+						</td>
+
+						<td>
+
+							<a href="{{ path('app_panier_minus', {'id': item.variant.id}) }}" class="btn btn-sm btn-danger">
+								-
+							</a>
+
+							<span class="mx-2">
+								{{ item.quantite }}
+							</span>
+
+							<a href="{{ path('app_panier_plus', {'id': item.variant.id}) }}" class="btn btn-sm btn-success">
+								+
+							</a>
+
+						</td>
+
+						<td>
+							{{ item.sousTotal }}
+							€
+						</td>
+
+						<td>
+							<a href="{{ path('app_panier_supprimer', {'id': item.variant.id}) }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Supprimer ce parfum du panier ?')">
+								<i class="bi bi-trash"></i>
+							</a>
+						</td>
+
+					</tr>
+
+				{% endfor %}
+
+			</tbody>
+
+		</table>
+
+		<h3>
+			Total :
+			{{ total }}
+			€
+		</h3>
+
+		<div class="text-end mt-4">
+			<a href="{{ path('app_catalog') }}" class="btn btn-outline-secondary me-2">
+				Continuer mes achats
+			</a>
+			<a href="{{ path('app_commande_paiement') }}" class="btn btn-dark btn-lg">
+				Valider ma commande
+			</a>
+		</div>
+
+	{% endif %}
+
+{% endblock %}

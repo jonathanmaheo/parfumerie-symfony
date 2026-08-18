@@ -1,40 +1,64 @@
-<footer class="bg-dark text-white mt-0 py-5">
-    <div class="container">
+<footer class="footer-elixir bg-dark text-white pt-4 pb-3">
+
+    <div class="container py-4">
         <div class="row">
 
-            <div class="col-md-4 mb-4">
-                <h5>Maison Elixir</h5>
-                <p>
-                    Découvrez notre sélection de parfums d'exception pour femmes et hommes.
+            {# ===== COLONNE 1 : LA MAISON ===== #}
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Maison Elixir</h5>
+                <p class="footer-about">
+                    Maison de parfums de niche, nous créons des fragrances d'exception
+                    pour femmes et hommes, inspirées par le savoir-faire des grands parfumeurs.
                 </p>
             </div>
 
-            <div class="col-md-4 mb-4">
-                <h5>Informations</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">Qui sommes-nous ?</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Livraison et retours</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+            {# ===== COLONNE 2 : AIDE & SERVICES ===== #}
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Aide & Services</h5>
+                <ul class="list-unstyled footer-list">
+                    <li><a href="{{ path('app_page_faq') }}">FAQ</a></li>
+                    <li><a href="{{ path('app_page_contact') }}">Contact</a></li>
+                    <li><a href="{{ path('app_page_livraison_retours') }}">Livraison et retours</a></li>
+                    <li><a href="{{ path('app_profile') }}">Suivi de commande</a></li>
                 </ul>
             </div>
 
-            <div class="col-md-4 mb-4">
-                <h5>Mentions légales</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">Conditions générales de vente</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Politique de confidentialité</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Mentions légales</a></li>
+            {# ===== COLONNE 3 : LA MAISON ===== #}
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">La Maison</h5>
+                <ul class="list-unstyled footer-list">
+                    <li><a href="{{ path('app_page_qui_sommes_nous') }}">Notre histoire</a></li>
+                    <li><a href="{{ path('app_page_guide_parfum') }}">Le guide du parfum</a></li>
+                </ul>
+            </div>
+
+            {# ===== COLONNE 4 : MENTIONS LÉGALES ===== #}
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Mentions légales</h5>
+                <ul class="list-unstyled footer-list">
+                    <li><a href="{{ path('app_page_cgv') }}">Conditions générales de vente</a></li>
+                    <li><a href="{{ path('app_page_cgu') }}">Conditions générales d'utilisation</a></li>
+                    <li><a href="{{ path('app_page_politique_confidentialite') }}">Politique de confidentialité</a></li>
+                    <li><a href="{{ path('app_page_mentions_legales') }}">Mentions légales</a></li>
                 </ul>
             </div>
 
         </div>
 
-        <hr>
+        <hr class="border-secondary">
 
-        <div class="text-center">
-            <p class="mb-1">Suivez-nous sur Instagram • Facebook • TikTok</p>
-            <p class="mb-0">© {{ "now"|date("Y") }} Maison Elixir - Tous droits réservés.</p>
+        {# ===== BARRE BASSE ===== #}
+        <div class="row align-items-center pt-3">
+            <div class="col-md-7 text-center text-md-start mb-2 mb-md-0">
+                <small>© {{ "now"|date("Y") }} Maison Elixir — Tous droits réservés.</small>
+            </div>
+            <div class="col-md-5 text-center text-md-end">
+                <small>Paiement sécurisé :</small>
+                <span class="payment-badge"><i class="bi bi-credit-card"></i> Visa</span>
+                <span class="payment-badge"><i class="bi bi-credit-card"></i> Mastercard</span>
+                <span class="payment-badge"><i class="bi bi-paypal"></i> PayPal</span>
+            </div>
         </div>
+
     </div>
 </footer>
