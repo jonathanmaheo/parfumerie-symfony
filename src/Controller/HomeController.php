@@ -61,6 +61,11 @@ final class HomeController extends AbstractController
                 return false;
             });
         }
+
+        // Après un filtre, array_filter garde les anciennes clés (2, 5, 8...)
+        // On les remet dans l'ordre 0, 1, 2, 3... pour que le tri fonctionne
+        $parfums = array_values($parfums);
+
         // TRI : par ordre alphabétique de marque
         $listeTriee = [];
         while (count($parfums) > 0) {
