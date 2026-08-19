@@ -111,10 +111,6 @@
     Retour à la liste
 </a>
 
-<a class="btn btn-warning" href="{{ path('app_admin_commande_produit_edit', {'id': commande_produit.id}) }}">
-    Modifier
-</a>
-
 {{ include('admin_commande_produit/_delete_form.html.twig', { commande_produit: commande_produit }) }}
 
 {% endblock %}

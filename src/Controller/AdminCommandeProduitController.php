@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\CommandeProduit;
-use App\Form\CommandeProduitType;
 use App\Repository\CommandeProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,49 +21,11 @@ final class AdminCommandeProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_admin_commande_produit_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $commandeProduit = new CommandeProduit();
-        $form = $this->createForm(CommandeProduitType::class, $commandeProduit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($commandeProduit);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_admin_commande_produit_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('admin_commande_produit/new.html.twig', [
-            'commande_produit' => $commandeProduit,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_admin_commande_produit_show', methods: ['GET'])]
     public function show(CommandeProduit $commandeProduit): Response
     {
         return $this->render('admin_commande_produit/show.html.twig', [
             'commande_produit' => $commandeProduit,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_admin_commande_produit_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, CommandeProduit $commandeProduit, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(CommandeProduitType::class, $commandeProduit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_admin_commande_produit_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('admin_commande_produit/edit.html.twig', [
-            'commande_produit' => $commandeProduit,
-            'form' => $form,
         ]);
     }
 
