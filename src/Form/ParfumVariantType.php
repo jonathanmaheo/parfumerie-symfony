@@ -31,8 +31,10 @@ class ParfumVariantType extends AbstractType
                     '35 ml' => '35 ml',
                     '50 ml' => '50 ml',
                     '70 ml' => '70 ml',
+                    '75 ml' => '75 ml',
                     '100 ml' => '100 ml',
-                    '200 ml' => '200 ml'
+                    '125 ml' => '125 ml',
+                    '200 ml' => '200 ml',
                 ],
             ])
 

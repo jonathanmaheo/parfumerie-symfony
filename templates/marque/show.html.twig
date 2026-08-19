@@ -47,11 +47,10 @@
                                 class="variant-btn"
                                 onclick="changeVariant(
                                     {{ parfum.id }},
-                                    '{{ asset(variant.image) }}',
+                                    '{% if variant.image %}{{ asset(variant.image) }}{% else %}{{ parfum.picture }}{% endif %}',
                                     '{{ variant.price }}',
                                     this
-                                )"
-                            >
+                                )">
                                 {{ variant.size }}
                             </button>
 
