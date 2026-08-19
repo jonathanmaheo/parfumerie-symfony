@@ -65,7 +65,7 @@
 			{% set defaultVariant = null %}
 
 			{% for variant in parfum.variants %}
-				{% if variant.size == '70ml' %}
+				{% if variant.size == '70 ml' %}
 					{% set defaultVariant = variant %}
 				{% endif %}
 			{% endfor %}
@@ -79,15 +79,10 @@
 				<div class="lux-card">
 
 					<div class="lux-image">
-                        <a href="{{ path('app_parfum', {id: parfum.id}) }}">
-                            <img
-                                id="img-{{ parfum.id }}"
-                                src="{{ parfum.picture }}"
-                                alt="{{ parfum.name }}"
-                                style="transition: all .2s ease;"
-                            >
-                        </a>
-                    </div>
+						<a href="{{ path('app_parfum', {id: parfum.id}) }}">
+							<img id="img-{{ parfum.id }}" src="{{ parfum.picture }}" alt="{{ parfum.name }}" style="transition: all .2s ease;">
+						</a>
+					</div>
 
 					<div class="lux-content">
 
@@ -111,12 +106,11 @@
 
 								{% for variant in parfum.variants %}
 
-									<button class="variant-btn" onclick="changeVariant(
-																																	                                            {{ parfum.id }},
-																																	                                            '{% if variant.image %}{{ asset(variant.image) }}{% else %}{{ parfum.picture }}{% endif %}',
-																																	                                            '{{ variant.price }}',
-																																	                                            this
-																																	                                        )">
+									<button class="variant-btn" onclick="changeVariant({{ parfum.id }},
+										'{% if variant.image %}{{ asset(variant.image) }}{% else %}{{ parfum.picture }}{% endif %}',
+											'{{ variant.price }}',
+												this)">
+												
 										{% if variant %}
 											{{ variant.size }}
 										{% else %}
