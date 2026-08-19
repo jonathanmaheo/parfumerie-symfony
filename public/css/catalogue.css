@@ -1,0 +1,96 @@
+/* ==========================
+   CATALOGUE : CARTES PARFUMS
+========================== */
+
+.lux-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.lux-image {
+    height: 280px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.lux-image img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.lux-image:hover img {
+    transform: scale(1.05);
+}
+
+.lux-card:hover img {
+    transform: scale(1.03);
+}
+
+.lux-brand {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+.lux-title {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.lux-families span {
+    font-size: 11px;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.lux-price {
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.lux-link {
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: black;
+    border-bottom: 1px solid black;
+    width: fit-content;
+}
+
+.variant-btn {
+    border: 1px solid #ddd;
+    background: transparent;
+    padding: 6px 10px;
+    margin-right: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.variant-btn:hover {
+    border-color: #000;
+}
+
+.variant-btn.active {
+    background: #111;
+    color: white;
+    border-color: #111;
+    transform: scale(1.05);
+}
+
+.variant-single {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #eee;
+    font-size: 13px;
+    color: #333;
+}

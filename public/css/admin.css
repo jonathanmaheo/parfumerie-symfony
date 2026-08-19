@@ -1,0 +1,99 @@
+/* ==========================
+   BACK-OFFICE
+========================== */
+
+.table tbody tr:hover{
+    background:#f8f6f2;
+    transition:.2s;
+}
+
+.admin-brand-card{
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+    transition: .3s;
+    height: 100%;
+}
+
+.admin-brand-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.12);
+}
+
+.admin-brand-logo{
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.admin-brand-logo img{
+    max-width: 130px;
+    max-height: 90px;
+    object-fit: contain;
+}
+
+.admin-brand-card h3{
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+.admin-brand-actions{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.admin-dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:25px;
+    margin-top:30px;
+}
+
+.admin-card{
+    background:white;
+    border-radius:20px;
+    padding:30px 25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.admin-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,.14);
+}
+
+.admin-card i{
+    font-size:42px;
+    color:#caa86a;
+    margin-bottom:15px;
+}
+
+.admin-card h3{
+    font-family:'Playfair Display', serif;
+    margin-bottom:22px;
+}
+
+.admin-card .btn{
+    width:100%;
+    margin-bottom:10px;
+}
+
+.imgRatioCarre{
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.w300{
+    width: 300px;
+    max-width: 100%;
+}
+
+.w150 {
+    width: 150px;
+}

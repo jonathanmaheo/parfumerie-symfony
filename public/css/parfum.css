@@ -101,3 +101,55 @@
     font-size:14px;
     font-weight:500;
 }
+
+/* ==========================
+   NOTES OLFACTIVES + INTENSITE
+========================== */
+
+.product-notes,
+.product-performance{
+    margin-top:35px;
+}
+
+.product-notes{
+    margin: 30px 0;
+}
+
+.product-notes h3{
+    font-family: "Playfair Display", serif;
+    margin-bottom: 15px;
+}
+
+.product-notes p{
+    margin-bottom: 8px;
+}
+
+.intensity-block{
+    margin-top: 20px;
+}
+
+.intensity-bar{
+    width: 100%;
+    height: 12px;
+    background: #e5e5e5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.intensity-fill{
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+.intensity-low{
+    background: #4caf50;
+}
+
+.intensity-medium{
+    background: #f39c12;
+}
+
+.intensity-high{
+    background: #c0392b;
+}

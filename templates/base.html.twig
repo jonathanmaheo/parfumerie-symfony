@@ -15,9 +15,15 @@
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/navigation.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/catalogue.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/parfum.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/pages.css') }}">
-		<link rel="stylesheet" href="{{asset('css/parfum.css')}}"> {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/form-back-office.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/boutons.css') }}"> {% block stylesheets %}{% endblock %}
 
 
 		{% set frankenphpHotReload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}

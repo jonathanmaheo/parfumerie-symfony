@@ -1,0 +1,144 @@
+/* ==========================
+   PAGE D'ACCUEIL
+========================== */
+
+.hero {
+    height: 90vh;
+    background-image: url('/images/fond-ecran.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.45);
+}
+
+.btn-hero{
+    display:inline-block;
+    padding:15px 40px;
+    background:#111;
+    color:white;
+    text-decoration:none;
+    letter-spacing:2px;
+    transition:.3s;
+}
+
+.btn-hero:hover{
+    background:#caa86a;
+    color:white;
+}
+
+/* ================= HERO HOME ================= */
+
+.hero-text{
+    position: absolute;
+    top: 58%;
+    left: 8%;
+    transform: translateY(-50%);
+    max-width: 520px;
+    z-index: 20;
+    color: white;
+}
+
+.hero-text h2{
+    font-family: "Cormorant Garamond", serif;
+    font-size: 62px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero-text p{
+    font-family: "Cormorant Garamond", sans-serif;
+    font-size: 24px;
+    line-height: 1.8;
+    color: rgba(255,255,255,.90);
+    margin-bottom: 35px;
+}
+
+.hero-text .btn-hero{
+    display: inline-block;
+    padding: 16px 42px;
+    border: 1px solid #d8b36a;
+    background: rgba(216,179,106,.15);
+    backdrop-filter: blur(6px);
+    color: white;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: .35s;
+}
+
+.hero-text .btn-hero:hover{
+    background: #d8b36a;
+    color: #111;
+}
+
+.hero-subtitle{
+    display: inline-block;
+    position: relative;
+    margin-bottom: 35px;
+    font-family: "Cormorant Garamond", sans-serif;
+    font-size: 20px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #e5d6b3;
+    font-weight: 500;
+}
+
+.hero-subtitle::after{
+    content: "";
+    display: block;
+    width: 70px;
+    height: 2px;
+    margin-top: 12px;
+    background: linear-gradient(
+        to right,
+        #c89b3c,
+        #f3d68a,
+        #c89b3c
+    );
+}
+
+.hero-subtitle span{
+    width: 60px;
+    height: 2px;
+    background: #d8b36a;
+}
+
+.hero-subtitle p{
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #e5d6b3;
+    font-weight: 500;
+}
+
+.home-main{
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+}
+
+.home-main h1{
+    margin: 0 !important;
+    
+}
+
+.home-header{
+    height:850px;
+}
+
+.page-header{
+    height:450px;
+}
