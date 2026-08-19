@@ -110,7 +110,7 @@
 										'{% if variant.image %}{{ asset(variant.image) }}{% else %}{{ parfum.picture }}{% endif %}',
 											'{{ variant.price }}',
 												this)">
-												
+
 										{% if variant %}
 											{{ variant.size }}
 										{% else %}
@@ -164,7 +164,20 @@
 
 		{% endfor %}
 
-	</div>
+	{# Boutons pour changer de page #}
+<div class="text-center my-5">
+	<p class="text-muted">
+    {{ parfums|length }} parfums sur cette page ({{ nombreParfums }} au total)
+</p>
+
+    {% if page > 1 %}
+        <a href="{{ path('app_catalog', {'page': page - 1, 'brand': selectedBrand, 'family': selectedFamily, 'maxPrice': selectedMaxPrice}) }}" class="btn btn-outline-dark">Précédent</a>
+    {% endif %}
+
+    {% if page < nombreDePages %}
+        <a href="{{ path('app_catalog', {'page': page + 1, 'brand': selectedBrand, 'family': selectedFamily, 'maxPrice': selectedMaxPrice}) }}" class="btn btn-outline-dark">Suivant</a>
+    {% endif %}
+</div>
 
 	<script>
 
