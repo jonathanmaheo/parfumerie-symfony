@@ -103,3 +103,32 @@
     overflow: visible !important;
     position: relative;
 }
+
+/* ==========================
+   RESPONSIVE : NAVIGATION
+========================== */
+
+@media (max-width: 768px) {
+    .logo-elixir {
+        margin-right: 20px;
+    }
+}
+
+/* ==========================
+   RESPONSIVE : MENU MOBILE
+========================== */
+
+@media (max-width: 992px) {
+    .custom-navbar .navbar-collapse {
+        background: rgba(17, 17, 17, 0.97);
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .custom-navbar .nav-link {
+        margin: 8px 0;
+    }
+}

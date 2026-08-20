@@ -153,3 +153,10 @@
 .intensity-high{
     background: #c0392b;
 }
+
+@media (max-width: 992px) {
+    .product-page {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}

@@ -142,3 +142,29 @@
 .page-header{
     height:450px;
 }
+
+@media (max-width: 748px) {
+    .hero-text {
+        left: 5px;
+        right: 5px;
+        max-width: none;
+    }
+
+    .hero-text h2 {
+        font-size: 40px;
+    }
+
+    hero-text p {
+        font-size: 18px;
+    }
+
+    .home-header {
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        height: 320px;
+    }
+}

@@ -94,3 +94,21 @@
     font-size: 13px;
     color: #333;
 }
+
+/* ==========================
+   RESPONSIVE : IMAGES DES CARTES
+========================== */
+
+@media (max-width: 768px) {
+    .lux-image {
+        aspect-ratio: 1 / 1;
+        height: auto;
+        background: #fff;
+    }
+
+    .lux-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

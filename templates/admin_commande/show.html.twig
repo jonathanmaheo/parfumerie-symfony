@@ -1,163 +1,172 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commande n°{{ commande.id }}{% endblock %}
-{% block h1 %}Détail de la commande n°{{ commande.id }}{% endblock %}
+{% block title %}Commande n°{{ commande.id }}
+{% endblock %}
+{% block h1 %}Détail de la commande n°{{ commande.id }}
+{% endblock %}
 
 {% block body %}
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{{ path('app_admin') }}">Back office</a>
-        </li>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_admin') }}">Back office</a>
+			</li>
 
-        <li class="breadcrumb-item">
-            <a href="{{ path('app_admin_commande_index') }}">Gestion des commandes</a>
-        </li>
+			<li class="breadcrumb-item">
+				<a href="{{ path('app_admin_commande_index') }}">Gestion des commandes</a>
+			</li>
 
-        <li class="breadcrumb-item active">
-            Commande n°{{ commande.id }}
-        </li>
-    </ol>
-</nav>
+			<li class="breadcrumb-item active">
+				Commande n°{{ commande.id }}
+			</li>
+		</ol>
+	</nav>
 
-<div class="card mt-3">
-    <div class="card-header bg-primary text-white">
-        Informations de la commande
-    </div>
+	<div class="card mt-3">
+		<div class="card-header bg-primary text-white">
+			Informations de la commande
+		</div>
 
-    <div class="card-body">
-        <table class="table table-striped table-bordered mb-0">
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered mb-0">
 
-            <tbody>
-                <tr>
-                    <th class="col-2">N°</th>
-                    <td>{{ commande.id }}</td>
-                </tr>
-                <tr>
-                    <th class="col-2">Date</th>
-                    <td>{{ commande.date|date('d/m/Y') }}</td>
-                </tr>
-                <tr>
-                    <th class="col-2">Client</th>
-                    <td>
-                        {% if commande.client %}
-                            {{ commande.client.name }}
-                        {% else %}
-                            —
-                        {% endif %}
-                    </td>
-                </tr>
-            </tbody>
+					<tbody>
+						<tr>
+							<th class="col-2">N°</th>
+							<td>{{ commande.id }}</td>
+						</tr>
+						<tr>
+							<th class="col-2">Date</th>
+							<td>{{ commande.date|date('d/m/Y') }}</td>
+						</tr>
+						<tr>
+							<th class="col-2">Client</th>
+							<td>
+								{% if commande.client %}
+									{{ commande.client.name }}
+								{% else %}
+									—
+								{% endif %}
+							</td>
+						</tr>
+					</tbody>
 
-        </table>
-    </div>
-</div>
+				</table>
+			</div>
+		</div>
+	</div>
 
-<div class="card mt-4">
-    <div class="card-header bg-primary text-white">
-        Produits de la commande
-    </div>
+	<div class="card mt-4">
+		<div class="card-header bg-primary text-white">
+			Produits de la commande
+		</div>
 
-    <div class="card-body">
+		<div class="card-body">
 
-        {% if commande.commandeProduits is empty %}
+			{% if commande.commandeProduits is empty %}
 
-            <p class="mb-0">Aucun produit dans cette commande.</p>
+				<p class="mb-0">Aucun produit dans cette commande.</p>
 
-        {% else %}
+			{% else %}
 
-            {% set total = 0 %}
+				{% set total = 0 %}
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered table-hover text-center align-middle mb-3">
 
-            <table class="table table-striped table-bordered table-hover text-center align-middle mb-3">
+						<thead class="table-primary">
+							<tr>
+								<th>Parfum</th>
+								<th>Contenance</th>
+								<th>Prix</th>
+								<th>Quantité</th>
+								<th>Sous-total</th>
+							</tr>
+						</thead>
 
-                <thead class="table-primary">
-                    <tr>
-                        <th>Parfum</th>
-                        <th>Contenance</th>
-                        <th>Prix</th>
-                        <th>Quantité</th>
-                        <th>Sous-total</th>
-                    </tr>
-                </thead>
+						<tbody>
 
-                <tbody>
+							{% for ligne in commande.commandeProduits %}
 
-                    {% for ligne in commande.commandeProduits %}
+								{% if ligne.parfumVariant %}
+									{% set total = total + (ligne.parfumVariant.price * ligne.quantity) %}
+								{% endif %}
 
-                        {% if ligne.parfumVariant %}
-                            {% set total = total + (ligne.parfumVariant.price * ligne.quantity) %}
-                        {% endif %}
+								<tr>
+									<td>
+										{% if ligne.parfumVariant %}
+											<a href="{{ path('app_admin_commande_produit_show', {'id': ligne.id}) }}">
+												{{ ligne.parfumVariant.parfum.name }}
+											</a>
+										{% else %}
+											—
+										{% endif %}
+									</td>
 
-                        <tr>
-                            <td>
-                                {% if ligne.parfumVariant %}
-                                    <a href="{{ path('app_admin_commande_produit_show', {'id': ligne.id}) }}">
-                                        {{ ligne.parfumVariant.parfum.name }}
-                                    </a>
-                                {% else %}
-                                    —
-                                {% endif %}
-                            </td>
+									<td>
+										{% if ligne.parfumVariant %}
+											{{ ligne.parfumVariant.size }}
+										{% else %}
+											—
+										{% endif %}
+									</td>
 
-                            <td>
-                                {% if ligne.parfumVariant %}
-                                    {{ ligne.parfumVariant.size }}
-                                {% else %}
-                                    —
-                                {% endif %}
-                            </td>
+									<td>
+										{% if ligne.parfumVariant %}
+											{{ ligne.parfumVariant.price }}
+											€
+										{% else %}
+											—
+										{% endif %}
+									</td>
 
-                            <td>
-                                {% if ligne.parfumVariant %}
-                                    {{ ligne.parfumVariant.price }} €
-                                {% else %}
-                                    —
-                                {% endif %}
-                            </td>
+									<td>
+										{% if ligne.parfumVariant %}
+											{{ ligne.quantity }}
+										{% else %}
+											—
+										{% endif %}
+									</td>
 
-                            <td>
-                                {% if ligne.parfumVariant %}
-                                    {{ ligne.quantity }}
-                                {% else %}
-                                    —
-                                {% endif %}
-                            </td>
+									<td>
+										{% if ligne.parfumVariant %}
+											{{ ligne.parfumVariant.price * ligne.quantity }}
+											€
+										{% else %}
+											—
+										{% endif %}
+									</td>
+								</tr>
 
-                            <td>
-                                {% if ligne.parfumVariant %}
-                                    {{ ligne.parfumVariant.price * ligne.quantity }} €
-                                {% else %}
-                                    —
-                                {% endif %}
-                            </td>
-                        </tr>
+							{% endfor %}
 
-                    {% endfor %}
+						</tbody>
 
-                </tbody>
+					</table>
+				</div>
 
-            </table>
+				<h4 class="text-end mb-0">
+					Total :
+					{{ total }}
+					€
+				</h4>
 
-            <h4 class="text-end mb-0">
-                Total : {{ total }} €
-            </h4>
+			{% endif %}
 
-        {% endif %}
+		</div>
+	</div>
 
-    </div>
-</div>
+	<div class="mt-4">
+		<a class="btn btn-secondary" href="{{ path('app_admin_commande_index') }}">
+			Retour à la liste
+		</a>
 
-<div class="mt-4">
-    <a class="btn btn-secondary" href="{{ path('app_admin_commande_index') }}">
-        Retour à la liste
-    </a>
+		<a class="btn btn-warning" href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}">
+			Modifier
+		</a>
 
-    <a class="btn btn-warning" href="{{ path('app_admin_commande_edit', {'id': commande.id}) }}">
-        Modifier
-    </a>
-
-    {{ include('admin_commande/_delete_form.html.twig', { commande: commande }) }}
-</div>
+		{{ include('admin_commande/_delete_form.html.twig', { commande: commande }) }}
+	</div>
 
 {% endblock %}
